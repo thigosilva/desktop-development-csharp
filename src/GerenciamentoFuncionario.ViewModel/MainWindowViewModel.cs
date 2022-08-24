@@ -56,7 +56,8 @@ namespace GerenciamentoFuncionario.ViewModel
                         {
                             NomeCompleto = funcionario.NomeCompleto,
                             CargoId = funcionario.CargoId,
-                            EBebedorCafe = funcionario.EBebedorCafe
+                            EBebedorCafe = funcionario.EBebedorCafe,
+                            DataEntrada = funcionario.DataEntrada,
                         }, _funcionarioProvedorDados)
                 );
             }

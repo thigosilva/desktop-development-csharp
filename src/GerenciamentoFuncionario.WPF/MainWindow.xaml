@@ -37,7 +37,8 @@
         <!--Área principal-->
         <Grid Grid.Row="1" 
               Grid.Column="1"
-              Visibility="{Binding FuncionarioEstaSelecionado, Mode=OneWay}">
+              Visibility="{Binding FuncionarioEstaSelecionado, Mode=OneWay, 
+                Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -55,7 +56,7 @@
             <TextBox 
                 Grid.Row="1"
                 x:Name="NomeCompleto" 
-                Text="{Binding  ViewModel.FuncionarioSelecionado.NomeCompleto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding FuncionarioSelecionado.NomeCompleto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="10" />
 
             <TextBlock Text="Digite sua data de nascimento"
@@ -64,6 +65,7 @@
             <DatePicker    
                 Grid.Row="3"               
                 Margin="10"
+                SelectedDate="{Binding FuncionarioSelecionado.DataHoraEntrada, Mode=TwoWay}"
                 />
 
             <TextBlock Text="Cargo"

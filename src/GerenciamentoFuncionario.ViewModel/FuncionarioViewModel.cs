@@ -1,5 +1,6 @@
 ﻿using GerenciamentoFuncionario.Comuns.Modelos;
 using GerenciamentoFuncionario.Comuns.ProvedorDados;
+using System;
 
 namespace GerenciamentoFuncionario.ViewModel
 {
@@ -49,6 +50,32 @@ namespace GerenciamentoFuncionario.ViewModel
                 if (_funcionarioModel.EBebedorCafe != value)
                 {
                     _funcionarioModel.EBebedorCafe = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public DateTimeOffset DataEntrada
+        {
+            get => _funcionarioModel.DataEntrada;
+            set
+            {
+                if (_funcionarioModel.DataEntrada != value)
+                {
+                    _funcionarioModel.DataEntrada = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public DateTime DataHoraEntrada
+        {
+            get => _funcionarioModel.DataEntrada.DateTime;
+            set
+            {
+                if (_funcionarioModel.DataEntrada.DateTime != value)
+                {
+                    _funcionarioModel.DataEntrada = value;
                     RaisePropertyChanged();
                 }
             }
