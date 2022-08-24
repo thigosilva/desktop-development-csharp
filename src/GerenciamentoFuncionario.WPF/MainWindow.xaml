@@ -28,8 +28,8 @@
             </Grid.RowDefinitions>
             <Button Content="Atualizar" Margin="10" />
             <ListView Grid.Row="1" 
-                      ItemsSource="{Binding  ViewModel.Funcionarios, Mode=OneWay}"
-                      SelectedItem="{Binding  ViewModel.FuncionarioSelecionado, Mode=TwoWay}"
+                      ItemsSource="{Binding  Funcionarios, Mode=OneWay}"
+                      SelectedItem="{Binding  FuncionarioSelecionado, Mode=TwoWay}"
                       DisplayMemberPath="NomeCompleto"
                       />
         </Grid>
@@ -37,8 +37,9 @@
         <!--Área principal-->
         <Grid Grid.Row="1" 
               Grid.Column="1"
-              Visibility="{Binding  ViewModel.FuncionarioEstaSelecionado, Mode=OneWay}">
+              Visibility="{Binding FuncionarioEstaSelecionado, Mode=OneWay}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -73,21 +74,21 @@
                 Grid.Row="5" 
                 Margin="10" 
                 HorizontalAlignment="Stretch"
-                ItemsSource="{Binding  ViewModel.Cargos, Mode=OneWay}"
+                ItemsSource="{Binding  Cargos, Mode=OneWay}"
                 DisplayMemberPath="CargoNome"
                 SelectedValuePath="Id"
-                SelectedValue="{Binding  ViewModel.FuncionarioSelecionado.CargoId, Mode=TwoWay}"
+                SelectedValue="{Binding  FuncionarioSelecionado.CargoId, Mode=TwoWay}"
                 />
-            
-           
+
+
             <CheckBox 
                 Grid.Row="6" 
                 Content="Bebe café?" 
                 Margin="10"
-                IsChecked="{Binding  ViewModel.FuncionarioSelecionado.EBebedorCafe, Mode=TwoWay}"
+                IsChecked="{Binding  FuncionarioSelecionado.EBebedorCafe, Mode=TwoWay}"
                 />
             <Button 
-                IsEnabled="{Binding  ViewModel.FuncionarioSelecionado.PodeSalvar, Mode=OneWay}"
+                IsEnabled="{Binding  FuncionarioSelecionado.PodeSalvar, Mode=OneWay}"
                 Grid.Row="7" 
                 Content="Save" 
                 Margin="10 10 10 30"
