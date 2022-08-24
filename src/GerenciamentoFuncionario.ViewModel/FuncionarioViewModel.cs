@@ -1,5 +1,6 @@
 ﻿using GerenciamentoFuncionario.Comuns.Modelos;
 using GerenciamentoFuncionario.Comuns.ProvedorDados;
+using GerenciamentoFuncionario.ViewModel.Comandos;
 using System;
 
 namespace GerenciamentoFuncionario.ViewModel
@@ -9,11 +10,15 @@ namespace GerenciamentoFuncionario.ViewModel
         private readonly IFuncionarioProvedorDados _funcionarioProvedorDados;
         private readonly FuncionarioModel _funcionarioModel;
 
+
         public FuncionarioViewModel(FuncionarioModel funcionarioModel, IFuncionarioProvedorDados funcionarioProvedorDados)
         {
             _funcionarioProvedorDados = funcionarioProvedorDados;
             _funcionarioModel = funcionarioModel;
+
+            ComandoSalvar = new DelegarComando(Salvar, () => PodeSalvar);
         }
+        public DelegarComando ComandoSalvar { get; }
 
         public string NomeCompleto
         {
@@ -25,6 +30,7 @@ namespace GerenciamentoFuncionario.ViewModel
                     _funcionarioModel.NomeCompleto = value;
                     RaisePropertyChanged();
                     RaisePropertyChanged(nameof(PodeSalvar));
+                    ComandoSalvar.RaiseCanExecuteChange();
                 }
             }
         }

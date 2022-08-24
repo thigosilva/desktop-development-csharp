@@ -26,7 +26,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button Content="Atualizar" Margin="10" />
+            <Button Content="Atualizar" Margin="10"
+                    Command="{Binding ComandoCarregar, Mode=OneWay}"
+                    />
             <ListView Grid.Row="1" 
                       ItemsSource="{Binding  Funcionarios, Mode=OneWay}"
                       SelectedItem="{Binding  FuncionarioSelecionado, Mode=TwoWay}"
@@ -91,6 +93,7 @@
                 />
             <Button 
                 IsEnabled="{Binding  FuncionarioSelecionado.PodeSalvar, Mode=OneWay}"
+                Command="{Binding FuncionarioSelecionado.ComandoSalvar, Mode=OneWay}"
                 Grid.Row="7" 
                 Content="Save" 
                 Margin="10 10 10 30"

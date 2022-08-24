@@ -1,5 +1,6 @@
 ﻿using GerenciamentoFuncionario.Comuns.Modelos;
 using GerenciamentoFuncionario.Comuns.ProvedorDados;
+using GerenciamentoFuncionario.ViewModel.Comandos;
 using System.Collections.ObjectModel;
 
 namespace GerenciamentoFuncionario.ViewModel
@@ -9,6 +10,8 @@ namespace GerenciamentoFuncionario.ViewModel
     {
         private readonly IFuncionarioProvedorDados _funcionarioProvedorDados;
         private readonly ICargoProvedorDados _cargoProvedorDados;
+
+
         private FuncionarioViewModel _funcionarioSelecionadoViewModel;
 
         public MainWindowViewModel(IFuncionarioProvedorDados funcionarioProvedorDados,
@@ -16,7 +19,10 @@ namespace GerenciamentoFuncionario.ViewModel
         {
             _funcionarioProvedorDados = funcionarioProvedorDados;
             _cargoProvedorDados = cargoProvedorDados;
+
+            ComandoCarregar = new DelegarComando(Carregar);
         }
+        public DelegarComando ComandoCarregar { get; }
 
         public ObservableCollection<FuncionarioViewModel> Funcionarios { get; } = new();
         public ObservableCollection<Cargo> Cargos { get; } = new();
