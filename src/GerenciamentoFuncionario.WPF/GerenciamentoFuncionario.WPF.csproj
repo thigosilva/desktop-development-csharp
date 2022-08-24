@@ -7,4 +7,17 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\employee_office_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GerenciamentoFuncionario.AcessoDados\GerenciamentoFuncionario.AcessoDados.csproj" />
+    <ProjectReference Include="..\GerenciamentoFuncionario.ViewModel\GerenciamentoFuncionario.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\employee_office_icon.png" />
+  </ItemGroup>
+
 </Project>
