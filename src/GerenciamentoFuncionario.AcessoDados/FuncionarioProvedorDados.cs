@@ -2,35 +2,47 @@
 using GerenciamentoFuncionario.Comuns.ProvedorDados;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace GerenciamentoFuncionario.AcessoDados
 {
     public class FuncionarioProvedorDados : IFuncionarioProvedorDados
     {
-        private List<Funcionario> Funcionarios { get; set; }
+        private readonly Contexto _Contexto;
 
         public FuncionarioProvedorDados()
         {
-            Funcionarios = new List<Funcionario> {
-                new Funcionario("Fulano de Tal", 1, false),
-                new Funcionario("Ciclano de Tal", 2, true),
-                new Funcionario("Beltrano de Tal", 3, true)
-            };
+            _Contexto = new Contexto();
         }
+        
 
         public void AtualizaFuncionario(Funcionario funcionario)
         {
-            throw new System.NotImplementedException();
+            _Contexto.Funcionarios.ForEach(f =>
+            {
+                if(f.Id == funcionario.Id)
+                {
+                    f.NomeCompleto = funcionario.NomeCompleto;
+                }
+            });
         }
 
         public void ExcluiFuncionario(Funcionario funcionario)
         {
-            throw new System.NotImplementedException();
+            _Contexto.Funcionarios.Remove(funcionario);
         }
 
         public Funcionario RecuperaFuncionarioPorId(int id)
         {
-            throw new System.NotImplementedException();
+
+            //pesquisa na lista inteira.
+            //return _Contexto.Funcionarios.Find(x => x.Id == id);
+            
+            //pesquisa mais expecifica.
+            //return _Contexto.Funcionarios.FirstOrDefault(X => x.Id == id);
+            
+            //pesquisa do jeito que quer.
+            return _Contexto.Funcionarios.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void SalvaFuncionario(Funcionario funcionario)
@@ -40,7 +52,7 @@ namespace GerenciamentoFuncionario.AcessoDados
 
         public IEnumerable<Funcionario> CarregaFuncionarios()
         {
-            return Funcionarios;
+            return _Contexto.Funcionarios;
         }
     }
 }

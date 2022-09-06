@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\src\GerenciamentoFuncionario.AcessoDados\GerenciamentoFuncionario.AcessoDados.csproj" />
+  </ItemGroup>
+
 </Project>
