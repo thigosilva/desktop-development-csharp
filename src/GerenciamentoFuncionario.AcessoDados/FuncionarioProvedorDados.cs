@@ -1,5 +1,6 @@
 ﻿using GerenciamentoFuncionario.Comuns.Modelos;
 using GerenciamentoFuncionario.Comuns.ProvedorDados;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,8 +24,17 @@ namespace GerenciamentoFuncionario.AcessoDados
                 if(f.Id == funcionario.Id)
                 {
                     f.NomeCompleto = funcionario.NomeCompleto;
+                    f.SetCargoId(funcionario.CargoId);
+                    f.SetBebedorCafe(funcionario.EBebedorCafe);
+                    
+
                 }
             });
+        }
+
+        public void ExcluiFuncionarioPorId(int v)
+        {
+            throw new NotImplementedException();
         }
 
         public void ExcluiFuncionario(Funcionario funcionario)
@@ -47,7 +57,24 @@ namespace GerenciamentoFuncionario.AcessoDados
 
         public void SalvaFuncionario(Funcionario funcionario)
         {
-            Debug.WriteLine($"Funcionário salvo: {funcionario.PrimeiroNome}");
+            //Debug.WriteLine($"Funcionário salvo: {funcionario.PrimeiroNome}");
+            var id = GeradorDeId();
+            _Contexto.Funcionarios.Add(funcionario);
+        }
+
+        private object GeradorDeId()
+        {
+            var maiorId = _Contexto.Funcionarios.Max(x => x.Id);                                                                                           //max devolve so a maior.
+            
+            bool temId;
+            do
+            {
+                maiorId++;
+                temId = _Contexto.Funcionarios.Any(x => x.Id.Equals(maiorId));
+                //temId = _Contexto.Funcionarios.Any(x => x.Id.Equals(maiorId));
+            } while (temId);
+
+            return maiorId;
         }
 
         public IEnumerable<Funcionario> CarregaFuncionarios()
